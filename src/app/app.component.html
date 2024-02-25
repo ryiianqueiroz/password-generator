@@ -1,23 +1,23 @@
 <main class="bg-black text-white flex justify-center flex-col items-center min-h-screen">
     <p class="mb-2 text-[14px] text-gray-500">Password Generator</p>
-    <div class="flex bg-[#252331] w-[250px] h-[40px] gap-[120px] justify-center items-center">
-        <h3>PTx1f5DaFX</h3>
-        <img src="assets/copy-green.png" alt="#" class="w-[15px] h-[15px] cursor-pointer">
+    <div class="flex bg-[#252331] relative w-[250px] h-[40px] justify-center items-center">
+        <h3 class="left-4 absolute">{{ text }}</h3>
+        <img src="assets/copy-green.png" alt="#" class="w-[15px] h-[15px] cursor-pointer right-4 absolute">
     </div>
 
     <div class="bg-[#252331] mt-3 w-[250px] p-3">
         <div class="">
             <div class="flex justify-between items-center">
                 <p class="text-[12px]">Character Length</p>
-                <h2 class="text-[22px] text-green-300">10</h2>
+                <h2 class="text-[22px] text-green-300">{{ barraTamanho }}</h2>
             </div>
 
             <input 
                 type="range" 
-                name="" 
-                id="" 
-                value="10" 
-                min="0" 
+                id="range-length" 
+                min="1" 
+                value="10"
+                (change)="valueChanged($event)"
                 max="20" 
                 class="w-full mt-4 accent-green-300"
             >        
@@ -25,39 +25,45 @@
 
         <div class="">
             <div class="flex">
-                <input 
-                    type="checkbox" 
-                    name="" 
-                    id="" 
-                    class="accent-green-300"
-                >
+                <label for="checkbox" class="flex items-center">
+                    <input 
+                        type="checkbox" 
+                        id="uppercase-btn" 
+                        (click)="includeUppercase($event)"
+                        class="before:content-{''} appearance-none w-[13px] h-[13px] border-[2px] border-green-300 checked:bg-green-300 cursor-pointer"
+                    >
+                </label>
                 <p class="ml-3 text-[13px]">Include Uppercase Letters</p>
             </div>
             <div class="flex">
-                <input 
-                    type="checkbox" 
-                    name="" 
-                    id="" 
-                    class="accent-green-300"
-                >
+                <label for="checkbox" class="flex items-center">
+                    <input 
+                        type="checkbox" 
+                        id="lowercase-btn" 
+                        (click)="includeLowercase($event)"
+                        class="before:content-{''} appearance-none w-[13px] h-[13px] border-[2px] border-green-300 checked:bg-green-300 cursor-pointer"
+                    >
+                </label>
                 <p class="ml-3 text-[13px]">Include Lowercase Letters</p>
             </div>
             <div class="flex">
-                <input 
-                    type="checkbox" 
-                    name="" 
-                    id="" 
-                    class="accent-green-300"
-                >
+                <label for="checkbox" class="flex items-center">
+                    <input 
+                        type="checkbox" 
+                        id="numbers-btn" 
+                        (click)="includeNumbers($event)"
+                        class="before:content-{''} appearance-none w-[13px] h-[13px] border-[2px] border-green-300 checked:bg-green-300 cursor-pointer"
+                    >
+                </label>
                 <p class="ml-3 text-[13px]">Include Numbers</p>
             </div>
             <div class="flex">
-                <label for="input" class="">
+                <label for="checkbox" class="flex items-center">
                     <input 
                         type="checkbox" 
-                        name="" 
-                        id="" 
-                        class="accent-green-300 cursor-pointer"
+                        id="symbols-btn" 
+                        (click)="includeSymbols($event)"
+                        class="before:content-{''} appearance-none w-[13px] h-[13px] border-[2px] border-green-300 checked:bg-green-300 cursor-pointer"
                     >
                 </label>
                 <p class="ml-3 text-[13px]">Include Symbol</p>
@@ -76,6 +82,6 @@
             </div>
         </div>
 
-        <button class="bg-green-300 text-black flex justify-center items-center w-full h-[40px] mt-4 text-[12px] font-bold hover:text-green-300 hover:outline hover:outline-[1px] hover:bg-transparent hover:outline-green-300">GENERATE <img src="assets/right-arrow.png" alt="#" class="w-2 h-2 ml-4"></button>
+        <button id="generate" (click)="generate_password(textCpy)" class="bg-green-300 text-black flex justify-center items-center w-full h-[40px] mt-4 text-[12px] font-bold hover:text-green-300 hover:outline hover:outline-[1px] hover:bg-transparent hover:outline-green-300">GENERATE <img src="assets/right-arrow.png" alt="#" class="w-2 h-2 ml-4"></button>
     </div>
 </main>
