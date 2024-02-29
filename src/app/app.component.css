@@ -7,3 +7,7 @@
 #generate:hover > img{
     filter: opacity(0.7) invert(1000%) drop-shadow(0 0 0 rgb(0, 255, 13));;
 }
+
+#btn-check{
+    color: black !important;
+}
