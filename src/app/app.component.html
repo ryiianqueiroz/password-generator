@@ -102,7 +102,7 @@
                         type="checkbox"
                         class="before:content[''] peer relative h-4 w-4 cursor-pointer appearance-none rounded-[2px] border border-green-300 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-6 before:w-6 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-300 checked:bg-green-300 checked:before:bg-green-300 hover:before:opacity-10"
                         [checked]="true"
-                        (change)="checkOnChange4($event)"
+                        (change)="checkOnChange4($event); dificuldadeMode()"
                         (click)="includeSymbols($event)"
                     />
 
@@ -125,7 +125,7 @@
             <p class="text-[12px] text-gray-400">STRENGTH</p>
 
             <div class="flex items-center">
-                <h3 class="text-[14px]">MEDIUM</h3>
+                <h3 class="text-[14px]">{{ dificuldadeText.value }}</h3>
                 <div class="w-1 h-4 border-white border-[1px] ml-2"></div>
                 <div class="w-1 h-4 border-white border-[1px] ml-2"></div>
                 <div class="w-1 h-4 border-white border-[1px] ml-2"></div>

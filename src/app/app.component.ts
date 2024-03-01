@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -23,6 +23,12 @@ export class AppComponent {
   checkChange2: any;
   checkChange3: any;
   checkChange4: any;
+  dificuldade: any;
+  div1: any;
+  div2: any;
+  div3: any;
+  div4: any;
+  dificuldadeText = new FormControl("EASY");
 
   checkOnChange1(event: Event): void {
     this.checkChange1 = (event.target as HTMLInputElement).checked
@@ -38,6 +44,46 @@ export class AppComponent {
 
   checkOnChange4(event: Event): void {
     this.checkChange4 = (event.target as HTMLInputElement).checked
+  }
+
+  dificuldadeMode() {
+    
+    if ( this.barraTamanho == 4 ) {
+      
+      if ( this.checkChange4 == true ) {
+        this.dificuldade.value = "MEDIUM"
+      } else {
+        this.dificuldade.value = "EASY"
+      }
+
+    } else if ( this.barraTamanho > 4 && this.barraTamanho <= 10  ) {
+
+      if ( this.checkChange3 == true && this.checkChange4 == true) {
+        this.dificuldade.value = "HARD"
+      } else if ( this.barraTamanho > 8 ) {
+        this.dificuldade.value = "HARD"
+      } else if ( this.checkChange4 == true ) {
+        this.dificuldade.value = "HARD"
+      } else {
+        this.dificuldade.value = "MEDIUM"
+      }
+
+    } else if ( this.barraTamanho > 11 && this.barraTamanho <= 15 ) {
+      
+      if ( this.checkChange1 == true, this.checkChange2 == true, this.checkChange3 == true, this.checkChange4 == true) {
+        this.dificuldade.value = "INSANE"
+      } else if ( this.checkChange4 == true ) {
+        this.dificuldade
+      } else {
+        this.dificuldade.value = "HARD"
+      }
+    
+    } else {
+
+      this.dificuldade.value = "INSANE"
+
+    }
+
   }
 
   repeated(inside: string, example: string) { 
@@ -153,6 +199,7 @@ export class AppComponent {
   
   valueChanged(event: Event) {
     this.barraTamanho = (event.target as HTMLInputElement).value;
+
     return this.barraTamanho;
   }
 
