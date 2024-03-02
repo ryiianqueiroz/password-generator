@@ -1,11 +1,12 @@
 import { FormsModule, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -30,6 +31,30 @@ export class AppComponent {
   div4: any;
   dificuldadeText = new FormControl("EASY");
 
+  extraClass(num: number) : any {
+    if ( this.dificuldadeText.value === "EASY" && num === 1 ) {
+      return {
+        'bg-yellow-600': true
+      }
+    } else if ( this.dificuldadeText.value === "MEDIUM" ) {
+      if ( num === 1 || num === 2 ) {
+        return {
+          'bg-yellow-600': true
+        }
+      } 
+    } else if ( this.dificuldadeText.value === "HARD" ) {
+      if ( num === 1 || num === 2 || num === 3 ) {
+        return {
+          'bg-yellow-600': true
+        }
+      } 
+    } else if ( this.dificuldadeText.value === "INSANE" ) {
+      return {
+        'bg-yellow-600': true
+      }
+    } 
+  }
+
   checkOnChange1(event: Event): void {
     this.checkChange1 = (event.target as HTMLInputElement).checked
   }
@@ -48,39 +73,39 @@ export class AppComponent {
 
   dificuldadeMode() {
     
-    if ( this.barraTamanho == 4 ) {
+    if ( this.barraTamanho <= 4 ) {
       
       if ( this.checkChange4 == true ) {
-        this.dificuldade.value = "MEDIUM"
+        this.dificuldadeText.setValue("MEDIUM")
       } else {
-        this.dificuldade.value = "EASY"
+        this.dificuldadeText.setValue("EASY")
       }
 
     } else if ( this.barraTamanho > 4 && this.barraTamanho <= 10  ) {
 
       if ( this.checkChange3 == true && this.checkChange4 == true) {
-        this.dificuldade.value = "HARD"
+        this.dificuldadeText.setValue("HARD")
       } else if ( this.barraTamanho > 8 ) {
-        this.dificuldade.value = "HARD"
+        this.dificuldadeText.setValue("HARD")
       } else if ( this.checkChange4 == true ) {
-        this.dificuldade.value = "HARD"
+        this.dificuldadeText.setValue("HARD")
       } else {
-        this.dificuldade.value = "MEDIUM"
+        this.dificuldadeText.setValue("MEDIUM")
       }
 
     } else if ( this.barraTamanho > 11 && this.barraTamanho <= 15 ) {
       
       if ( this.checkChange1 == true, this.checkChange2 == true, this.checkChange3 == true, this.checkChange4 == true) {
-        this.dificuldade.value = "INSANE"
+        this.dificuldadeText.setValue("INSANE")
       } else if ( this.checkChange4 == true ) {
         this.dificuldade
       } else {
-        this.dificuldade.value = "HARD"
+        this.dificuldadeText.setValue("HARD")
       }
     
     } else {
 
-      this.dificuldade.value = "INSANE"
+      this.dificuldadeText.setValue("INSANE")
 
     }
 

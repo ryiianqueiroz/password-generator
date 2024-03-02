@@ -18,7 +18,7 @@
                 id="range-length" 
                 min="1" 
                 value="10"
-                (change)="valueChanged($event)"
+                (change)="valueChanged($event); dificuldadeMode()"
                 max="20" 
                 class="w-full mt-4 accent-green-300"
             >        
@@ -31,7 +31,7 @@
                         type="checkbox"
                         class="before:content[''] peer relative h-4 w-4 cursor-pointer appearance-none rounded-[2px] border border-green-300 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-6 before:w-6 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-300 checked:bg-green-300 checked:before:bg-green-300 hover:before:opacity-10"
                         [checked]="true"
-                        (change)="checkOnChange1($event)"
+                        (change)="checkOnChange1($event); dificuldadeMode()"
                         (click)="includeUppercase($event)"
                     />
 
@@ -54,7 +54,7 @@
                         type="checkbox"
                         class="before:content[''] peer relative h-4 w-4 cursor-pointer appearance-none rounded-[2px] border border-green-300 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-6 before:w-6 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-300 checked:bg-green-300 checked:before:bg-green-300 hover:before:opacity-10"
                         [checked]="true"
-                        (change)="checkOnChange2($event)"
+                        (change)="checkOnChange2($event); dificuldadeMode()"
                         (click)="includeLowercase($event)"
                     />
 
@@ -76,7 +76,7 @@
                     <input 
                         type="checkbox"
                         id="btn-check"
-                        (change)="checkOnChange3($event)"
+                        (change)="checkOnChange3($event); dificuldadeMode()"
                         class="before:content[''] peer relative h-4 w-4 cursor-pointer appearance-none rounded-[2px] border border-green-300 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-6 before:w-6 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-300 checked:bg-green-300 checked:before:bg-green-300 hover:before:opacity-10"
                         [checked]="true"
                         (click)="includeNumbers($event)"
@@ -126,10 +126,10 @@
 
             <div class="flex items-center">
                 <h3 class="text-[14px]">{{ dificuldadeText.value }}</h3>
-                <div class="w-1 h-4 border-white border-[1px] ml-2"></div>
-                <div class="w-1 h-4 border-white border-[1px] ml-2"></div>
-                <div class="w-1 h-4 border-white border-[1px] ml-2"></div>
-                <div class="w-1 h-4 border-white border-[1px] ml-2"></div>
+                <div class="w-1 h-4 border-white border-[1px] ml-2" [ngClass]="extraClass(1)"></div>
+                <div class="w-1 h-4 border-white border-[1px] ml-2" [ngClass]="extraClass(2)"></div>
+                <div class="w-1 h-4 border-white border-[1px] ml-2" [ngClass]="extraClass(3)"></div>
+                <div class="w-1 h-4 border-white border-[1px] ml-2" [ngClass]="extraClass(4)"></div>
             </div>
         </div>
 
