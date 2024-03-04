@@ -2,22 +2,22 @@ import { FormsModule, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { ClipboardModule } from '@angular/cdk/clipboard'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet, FormsModule, CommonModule, ClipboardModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
   title = 'password-generator';
   barraTamanho: any = 10;
   text: string = "PTx1f5DaFX";
   btn_check: any;
   count: any = 0;
-  textCpy: string = "";
+  textCpy: string = "PTx1f5DaFX";
   charset: string = "abcdefghijklmnopqrstuvwxyz0123456789+.-!?/ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   checkChange1: any;
@@ -29,7 +29,7 @@ export class AppComponent {
   div2: any;
   div3: any;
   div4: any;
-  dificuldadeText = new FormControl("EASY");
+  dificuldadeText = new FormControl("HARD");
 
   extraClass(num: number) : any {
     if ( this.dificuldadeText.value === "EASY" && num === 1 ) {
@@ -93,12 +93,12 @@ export class AppComponent {
         this.dificuldadeText.setValue("MEDIUM")
       }
 
-    } else if ( this.barraTamanho > 11 && this.barraTamanho <= 15 ) {
+    } else if ( this.barraTamanho > 10 && this.barraTamanho <= 15 ) {
       
       if ( this.checkChange1 == true, this.checkChange2 == true, this.checkChange3 == true, this.checkChange4 == true) {
         this.dificuldadeText.setValue("INSANE")
       } else if ( this.checkChange4 == true ) {
-        this.dificuldade
+        this.dificuldade.setValue("INSANE")
       } else {
         this.dificuldadeText.setValue("HARD")
       }

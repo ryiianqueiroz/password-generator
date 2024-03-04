@@ -3,7 +3,7 @@
     
     <div class="flex bg-[#252331] relative w-[250px] h-[40px] justify-center items-center">
         <div class="left-4 absolute">{{text}}</div>
-        <img src="assets/copy-green.png" alt="#" class="w-[15px] h-[15px] cursor-pointer right-4 absolute">
+        <img src="assets/copy-green.png" alt="#" class="w-[15px] h-[15px] cursor-pointer right-4 absolute" [cdkCopyToClipboard]="text">
     </div>
 
     <div class="bg-[#252331] mt-3 w-[250px] p-3">
