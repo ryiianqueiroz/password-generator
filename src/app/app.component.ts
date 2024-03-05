@@ -18,7 +18,7 @@ export class AppComponent {
   btn_check: any;
   count: any = 0;
   textCpy: string = "PTx1f5DaFX";
-  charset: string = "abcdefghijklmnopqrstuvwxyz0123456789+.-!?/ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  charset: string = "abcdefghijklmnopqrstuvwxyz0123456789!?&#$ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   checkChange1: any;
   checkChange2: any;
@@ -31,7 +31,7 @@ export class AppComponent {
   div4: any;
   dificuldadeText = new FormControl("HARD");
 
-  extraClass(num: number) : any {
+  extraClass(num: number) : any { // CSS PARA MOSTRAR A DIFICULDADE EM COR
     if ( this.dificuldadeText.value === "EASY" && num === 1 ) {
       return {
         'bg-yellow-600': true
@@ -55,7 +55,11 @@ export class AppComponent {
     } 
   }
 
-  checkOnChange1(event: Event): void {
+  alertCopy(){ // ALERTA AO COPIAR
+    alert('A Senha foi copiada com sucesso!')
+  }
+
+  checkOnChange1(event: Event): void { // COLOCAR NA VARIÁVEL SE O CHECKBOX ESTÁ CHECKED OU NÃO
     this.checkChange1 = (event.target as HTMLInputElement).checked
   }
 
@@ -71,7 +75,7 @@ export class AppComponent {
     this.checkChange4 = (event.target as HTMLInputElement).checked
   }
 
-  dificuldadeMode() {
+  dificuldadeMode() { // DEMONSTRAR NA TELA QUAL DIFICULDADE ESTÁ A SENHA
     
     if ( this.barraTamanho <= 4 ) {
       
@@ -111,7 +115,7 @@ export class AppComponent {
 
   }
 
-  repeated(inside: string, example: string) { 
+  repeated(inside: string, example: string) { // FUNÇÃO PARA MOSTRAR SE ESTÁ REPETIDO
     this.count = 0
 
     for (var i=0; i<inside.length; i++) {
@@ -123,7 +127,7 @@ export class AppComponent {
     return this.count;
   }
 
-  includeUppercase(event: Event) {
+  includeUppercase(event: Event) { // INCLUIR UPPERCASE
     if ( this.checkChange2 === false && this.checkChange3 === false && this.checkChange4 === false ) {
       this.checkChange1.checked = true
     } else {
@@ -145,7 +149,7 @@ export class AppComponent {
     }
   }
 
-  includeLowercase(event: Event) {
+  includeLowercase(event: Event) { // INCLUIR LOWERCASE
     if ( this.checkChange1 === false && this.checkChange3 === false && this.checkChange4 === false ) {
       this.checkChange2.checked = true
     } else {
@@ -167,7 +171,7 @@ export class AppComponent {
     }
   }
 
-  includeNumbers(event: Event) {
+  includeNumbers(event: Event) { // INCLUIR NUMBERS
     if ( this.checkChange2 === false && this.checkChange1 === false && this.checkChange4 === false ) {
       this.checkChange3.checked = true
     } else {
@@ -189,19 +193,19 @@ export class AppComponent {
     }
   }
   
-  includeSymbols(event: Event) {
+  includeSymbols(event: Event) { // INCLUIR SIMBOLOS
     if ( this.checkChange1 === false && this.checkChange2 === false && this.checkChange3 === false ) {  
       this.checkChange4.checked = true
     } else {
       if ( (event.target as HTMLInputElement).checked != true ) {
 
-        this.charset = this.charset.replace("+.-!?/", "")
+        this.charset = this.charset.replace("!?&#$", "")
         console.log(this.charset)
 
       } else {
     
         if ( this.repeated(this.charset, "!") === 0 ) {
-          this.charset = this.charset.concat("+.-!?/")
+          this.charset = this.charset.concat("!?&#$")
           console.log(this.charset)
         } else {
           console.log("Já existe")
@@ -211,7 +215,7 @@ export class AppComponent {
     }
   }
 
-  stringGen(tamanho: number) {
+  stringGen(tamanho: number) { // COPIAR PARA UMA VARIÁVEL A SENHA 
     this.textCpy = "";
 
 
@@ -222,13 +226,13 @@ export class AppComponent {
   }
   
   
-  valueChanged(event: Event) {
+  valueChanged(event: Event) { // QUANDO O USUÁRIO MEXER NO RANGE MUDAR O VALOR 
     this.barraTamanho = (event.target as HTMLInputElement).value;
 
     return this.barraTamanho;
   }
 
-  generate_password(password: string){
+  generate_password(password: string){ // GERANDO SENHA
     if( this.text === this.textCpy ) {
       this.stringGen(this.barraTamanho)
     }
